@@ -6,7 +6,7 @@ in
   environment.systemPackages = [ instagram ];
 
   deployment.keys.instagram-env = {
-    text = builtins.readFile ~/projects/workplace/instagram/.env.production;
+    text = builtins.readFile ~/projects/instagram/.env.production;
   };
   systemd.services.instagram = {
     after = [ "instagram-env-key.service" ];
