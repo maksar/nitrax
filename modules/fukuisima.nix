@@ -8,10 +8,14 @@ in
   deployment.keys.fukuisima-env = {
     text = builtins.readFile ~/projects/fukuisima/.env.production;
   };
+  deployment.keys."fukuisima-dc1.cer" = {
+    text = builtins.readFile ~/projects/fukuisima/config/dc1.cer;
+    destDir = "/root/.fukuisima";
+  };
 
   systemd.services.fukuisima-report = {
-    after = [ "fukuisima-env-key.service" ];
-    wants = [ "fukuisima-env-key.service" ];
+    after = [ "fukuisima-env-key.service" "fukuisima-dc1.cer-key.service" ];
+    wants = [ "fukuisima-env-key.service" "fukuisima-dc1.cer-key.service" ];
     script = ''
       source <(sed -E 's/([A-Z_0-9]+)=(.*)/export \1=\2/g' /run/keys/fukuisima-env)
       exec ${fukuisima}/bin/fukuisima report -s
@@ -25,8 +29,8 @@ in
   };
 
   systemd.services.fukuisima-notify = {
-    after = [ "fukuisima-env-key.service" ];
-    wants = [ "fukuisima-env-key.service" ];
+    after = [ "fukuisima-env-key.service" "fukuisima-dc1.cer-key.service" ];
+    wants = [ "fukuisima-env-key.service" "fukuisima-dc1.cer-key.service" ];
     script = ''
       source <(sed -E 's/([A-Z_0-9]+)=(.*)/export \1=\2/g' /run/keys/fukuisima-env)
       exec ${fukuisima}/bin/fukuisima notify -s
