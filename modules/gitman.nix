@@ -30,6 +30,11 @@ in
     wantedBy = [ "default.target" ];
     serviceConfig = {
       Restart = "always";
+      RestartSec = 5;
+    };
+    unitConfig = {
+      StartLimitBurst = 1440;
+      StartLimitIntervalSec = 7200;
     };
   };
 }
