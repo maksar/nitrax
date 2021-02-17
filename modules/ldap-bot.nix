@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  ldap-bot = (builtins.getFlake "git+ssh://git@git.itransition.com:7999/ia/ldap-bot.git").defaultPackage.${pkgs.system};
+  ldap-bot = (builtins.getFlake "git+ssh://git@git.itransition.com:7999/ia/ldap-bot.git").packages.${pkgs.system}.facebook;
 in
 {
   environment.systemPackages = [ ldap-bot ];
