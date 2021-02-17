@@ -13,7 +13,7 @@ in
     wants = [ "ldap-bot-env-key.service" ];
     script = ''
       source <(sed -E 's/([A-Z_0-9]+)=(.*)/export \1=\2/g' /run/keys/ldap-bot-env)
-      exec ${ldap-bot}/bin/ldap-bot-exe
+      exec ${ldap-bot}/bin/ldap-bot-facebook
     '';
     wantedBy = [ "default.target" ];
     serviceConfig = {
@@ -29,7 +29,7 @@ in
     wants = [ "ldap-bot-qa-env-key.service" ];
     script = ''
       source <(sed -E 's/([A-Z_0-9]+)=(.*)/export \1=\2/g' /run/keys/ldap-bot-qa-env)
-      exec ${ldap-bot}/bin/ldap-bot-exe
+      exec ${ldap-bot}/bin/ldap-bot-facebook
     '';
     wantedBy = [ "default.target" ];
     serviceConfig = {
