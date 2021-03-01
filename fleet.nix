@@ -9,7 +9,7 @@
     { config, pkgs, ... }:
     {
       rootfs = "btrfs";
-      imports = [ ./hardware/efi.nix ./os ./modules/trimmer.nix ./modules/gitman.nix ./modules/nine11.nix ./modules/ldap-bot.nix ./modules/instagram.nix ./modules/digest.nix ./modules/fukuisima.nix ];
+      imports = [ ./hardware/efi.nix ./os ./modules/trimmer.nix ./modules/gitman.nix ./modules/nine11.nix ./modules/ldap-bot.nix ./modules/instagram.nix ./modules/digest.nix ./modules/fukuisima.nix ./modules/milestones.nix ];
 
       networking.hostName = "decepticons";
       deployment.targetHost = "decepticons.itransition.corp";
