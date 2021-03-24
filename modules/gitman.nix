@@ -16,13 +16,13 @@ in
     text = builtins.readFile ~/projects/gitman/config/git.cer;
     destDir = "/root/.gitman";
   };
-  deployment.keys."dc1.cer" = {
-    text = builtins.readFile ~/projects/gitman/config/dc1.cer;
+  deployment.keys."ldap.cer" = {
+    text = builtins.readFile ~/projects/gitman/config/ldap.cer;
     destDir = "/root/.gitman";
   };
   systemd.services.gitman = {
-    after = [ "gitman-env-key.service" "users.yml-key.service" "git.cer-key.service" "dc1.cer-key.service" ];
-    wants = [ "gitman-env-key.service" "users.yml-key.service" "git.cer-key.service" "dc1.cer-key.service" ];
+    after = [ "gitman-env-key.service" "users.yml-key.service" "git.cer-key.service" "ldap.cer-key.service" ];
+    wants = [ "gitman-env-key.service" "users.yml-key.service" "git.cer-key.service" "ldap.cer-key.service" ];
     script = ''
       source <(sed -E 's/([A-Z_0-9]+)=(.*)/export \1=\2/g' /run/keys/gitman-env)
       exec ${gitman}/bin/gitman
