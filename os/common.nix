@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ vim htop tree mc ranger ];
+  environment.systemPackages = with pkgs; [ vim htop tree ranger nmap ];
 }
