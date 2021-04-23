@@ -23,7 +23,7 @@ in
   };
   systemd.timers.fukuisima-report = {
     timerConfig = {
-      OnCalendar = "*-*-* 09:00";
+      OnCalendar = "Mon..Fri *-*-* 09:00";
     };
     wantedBy = [ "timers.target" ];
   };
@@ -38,7 +38,7 @@ in
   };
   systemd.timers.fukuisima-notify = {
     timerConfig = {
-      OnCalendar = "*-*-* 09:10";
+      OnCalendar = "Mon..Fri *-*-* 09:10";
     };
     wantedBy = [ "timers.target" ];
   };
