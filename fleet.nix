@@ -19,6 +19,7 @@
       ./modules/fukuisima.nix
       ./modules/milestones.nix
       ./modules/personer.nix
+      ./modules/certiplace.nix
     ];
 
     networking.hostName = "decepticons";
