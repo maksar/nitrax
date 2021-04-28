@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  certiplace = (builtins.getFlake "git+ssh://git@git.itransition.com:7999/workplace/certificates.git?ref=nixify").defaultPackage.${pkgs.system};
+  certiplace = (builtins.getFlake "git+ssh://git@git.itransition.com:7999/workplace/certificates.git").defaultPackage.${pkgs.system};
   driver = pkgs.unixODBCDrivers.msodbcsql17;
 in
 {
