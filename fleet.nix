@@ -20,6 +20,7 @@
       ./modules/milestones.nix
       ./modules/personer.nix
       ./modules/certiplace.nix
+      ./modules/coorish.nix
     ];
 
     networking.hostName = "decepticons";
