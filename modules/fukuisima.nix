@@ -14,6 +14,7 @@ in
   };
 
   systemd.services.fukuisima-report = {
+    enable = false;
     after = [ "fukuisima-env-key.service" "fukuisima-ldap.cer-key.service" ];
     wants = [ "fukuisima-env-key.service" "fukuisima-ldap.cer-key.service" ];
     script = ''
@@ -22,6 +23,7 @@ in
     '';
   };
   systemd.timers.fukuisima-report = {
+    enable = false;
     timerConfig = {
       OnCalendar = "Mon..Fri *-*-* 09:00";
     };
@@ -29,6 +31,7 @@ in
   };
 
   systemd.services.fukuisima-notify = {
+    enable = false;
     after = [ "fukuisima-env-key.service" "fukuisima-ldap.cer-key.service" ];
     wants = [ "fukuisima-env-key.service" "fukuisima-ldap.cer-key.service" ];
     script = ''
@@ -37,6 +40,7 @@ in
     '';
   };
   systemd.timers.fukuisima-notify = {
+    enable = false;
     timerConfig = {
       OnCalendar = "Mon..Fri *-*-* 09:10";
     };

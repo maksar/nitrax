@@ -2,7 +2,7 @@
   network = {
     description = "Itransition NIXOS fleet";
     enableRollback = true;
-    nixpkgs = (import <nixos-20.09-small> { system = "x86_64-linux"; });
+    nixpkgs = (import <nixos-21.05-small> { system = "x86_64-linux"; });
   };
 
   "decepticons" = { config, pkgs, ... }: {
