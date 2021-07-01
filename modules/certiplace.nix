@@ -4,7 +4,7 @@ let
   driver = pkgs.unixODBCDrivers.msodbcsql17;
 in
 {
-  environment.systemPackages = [ certiplace ];
+  environment.systemPackages = [ certiplace driver ];
 
   deployment.keys.certiplace-env = {
     text = (builtins.readFile ~/projects/certiplace/.env.production) + "\nCERTIPLACE_EMS_DATABASE_DRIVER=${driver}/${driver.driver}";
@@ -19,7 +19,7 @@ in
   };
   systemd.timers.certiplace = {
     timerConfig = {
-      OnCalendar="*-*-01 12:00:00";
+      OnCalendar="*-*-01 12:15:00";
     };
     wantedBy = [ "timers.target" ];
   };
