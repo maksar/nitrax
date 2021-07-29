@@ -8,19 +8,18 @@ in
   deployment.keys.coorish-env = {
     text = builtins.readFile ~/projects/coorish/.env.production;
   };
-  systemd.services = builtins.mapAttrs (name: value: {
+  systemd.services.coorish-server = {
     after = [ "coorish-env-key.service" ];
     wants = [ "coorish-env-key.service" ];
     script = ''
       source <(sed -E 's/([A-Z_0-9]+)=(.*)/export \1=\2/g' /run/keys/coorish-env)
-      exec ${value}/bin/coorish
+      exec ${coorish.server}/bin/coorish-server
     '';
-  }) coorish;
-
-  systemd.timers = builtins.mapAttrs (name: value: {
-    timerConfig = {
-      OnCalendar="*-*-* 10:00:00";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Restart = "always";
     };
-    wantedBy = [ "timers.target" ];
-  }) coorish;
+  };
+
+  networking.firewall.allowedTCPPorts = [8888];
 }
